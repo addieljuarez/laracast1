@@ -1,38 +1,12 @@
 <?php
 namespace App\Models;
 use Illuminate\Support\Arr;
+use Illuminate\Database\Eloquent\Model;
 
-class Job {
-    public static function all(): array
-    {
-        return [
-            [
-                "id" => "1",
-                "title" => "Director",
-                "salary" => "$50,000"
-            ],
-            [
-                "id" => "2",
-                "title" => "Programmer",
-                "salary" => "$10,000"
-            ],
-            [
-                "id" => "3",
-                "title" => "Teacher",
-                "salary" => "$40,000"
-            ]
-        ];
-    }
+class Job extends Model {
+    protected $table = 'jobs_listings';
 
-    public static function find(int $id): array
-    {
-        // return Arr::first(static::all(), fn($job) => $job['id'] == $id);
-        $job = Arr::first(static::all(), fn($job) => $job['id'] == $id);
-        if(! $job){
-            abort(404);
-        }
-
-        return $job;
-    }
-
+    // aqui se le da permiso para poder hacer cargas en masa a los parametros descritos o a todo si es un array vacio
+    // php artisan tinker
+    protected $fillable = ['title', 'salary'];
 }
