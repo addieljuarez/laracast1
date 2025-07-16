@@ -19,4 +19,19 @@ class Job extends Model {
         return $this->belongsTo(Employer::class);
         // }
     }
+
+    public function tags (){
+        // return $this->public function user()
+        // {
+        // return $this->/**
+        //  * The roles that belong to the Job
+        //  *
+        //  * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+        //  */
+        // public function roles(): BelongsToMany
+        // {
+        return $this->belongsToMany(Tag::class, foreignPivotKey: 'job_listings_id');
+        // }
+        // }
+    }
 }
