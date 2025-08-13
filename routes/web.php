@@ -14,9 +14,14 @@ Route::get('/jobs', function () {
     // $jobs = Job::with('employer')->paginate(3);
     // $jobs = Job::with('employer')->simplePaginate(3);
     $jobs = Job::with('employer')->cursorPaginate(3);
-    return view('jobs', [
+    return view('jobs.index', [
         "jobs" => $jobs
     ]);
+});
+
+Route::get('/jobs/create', function() {
+    // dd('test create');
+    return view('jobs.create');
 });
 
 Route::get('/jobs/{id}', function($id) {
@@ -24,9 +29,12 @@ Route::get('/jobs/{id}', function($id) {
     // $job = Arr::first(Job::all(), fn($job) => $job['id'] === $id);
     // dd($job);
 
-    return view('job', ['job' => Job::find($id)]);
+    return view('jobs.show', ['job' => Job::find($id)]);
 });
 
+Route::post('/jobs', function(){
+    dd('hello from request post ');
+});
 
 Route::get('/contact', function() {
     return view('contact');
