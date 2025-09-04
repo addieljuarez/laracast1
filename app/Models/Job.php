@@ -11,7 +11,8 @@ class Job extends Model {
 
     // aqui se le da permiso para poder hacer cargas en masa a los parametros descritos o a todo si es un array vacio
     // php artisan tinker
-    protected $fillable = ['title', 'salary'];
+    // protected $fillable = ['employer_id', 'title', 'salary']; // estos campos son lo que puedes ingresar o de saldra un 419
+    protected $guarded = []; // estos campos son los que proteges, esta lista es contraria a la de fillable
 
     public function employer (){
         // return $this->public function user()
